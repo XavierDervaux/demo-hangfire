@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DemoHangfire.CLI": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

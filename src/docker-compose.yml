@@ -1,0 +1,25 @@
+#Please note that a corresponding '.env' file should be next to this yml to define the Environment values used here.
+#Since it contains passwords, it should not be shared in the source control.
+#See README for instructions.
+
+version: '3.4'
+services:
+    demohangfire.cli:
+        image: ${DOCKER_REGISTRY-}demohangfirecli
+        build:
+            context: .
+            dockerfile: DemoHangfire.CLI/Dockerfile
+        environment:
+            ConnectionString: "Data Source=demohangfire.mssql;Initial Catalog=DemoHangfire;User Id=sa;Password=${SA_PASSWD};MultipleActiveResultSets=True"
+        depends_on:
+            - demohangfire.mssql
+
+    demohangfire.mssql:
+        image: ${DOCKER_REGISTRY-}demohangfiremssql
+        build:
+            args:
+                SA_PASSWD: ${SA_PASSWD}
+            context: .
+            dockerfile: DemoHangfire.MSSQL/Dockerfile
+        ports:
+            - "1434:1433"
