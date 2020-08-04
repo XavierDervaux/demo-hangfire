@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,7 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="HangFire.Core" Version="1.7.12" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.7.12" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DemoHangfire.Models\DemoHangfire.Models.csproj" />
   </ItemGroup>
 
 </Project>
