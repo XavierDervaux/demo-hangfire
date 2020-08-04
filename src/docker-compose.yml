@@ -9,8 +9,9 @@ services:
         build:
             context: .
             dockerfile: DemoHangfire.CLI/Dockerfile
+            network: 'host'
         environment:
-            ConnectionString: "Data Source=demohangfire.mssql;Initial Catalog=DemoHangfire;User Id=sa;Password=${SA_PASSWD};MultipleActiveResultSets=True"
+            ConnectionString: "Data Source=demohangfire.mssql;Database=DemoHangfire;User=SA;Password=${SA_PASSWD};MultipleActiveResultSets=True"
         depends_on:
             - demohangfire.mssql
 
@@ -21,5 +22,6 @@ services:
                 SA_PASSWD: ${SA_PASSWD}
             context: .
             dockerfile: DemoHangfire.MSSQL/Dockerfile
+            network: 'host'
         ports:
             - "1434:1433"
