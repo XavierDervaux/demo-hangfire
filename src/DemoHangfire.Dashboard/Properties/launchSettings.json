@@ -1,0 +1,11 @@
+{
+    "DemoHangfire.Dashboard": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_URLS": "http://*:5000"
+      },
+      "applicationUrl": "http://localhost:5000"
+    }
+  }
+}

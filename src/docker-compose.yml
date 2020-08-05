@@ -14,16 +14,32 @@ services:
             ConnectionString: "Data Source=demohangfire.mssql;Database=DemoHangfire;User=SA;Password=${SA_PASSWD};MultipleActiveResultSets=True"
         depends_on:
             - demohangfire.mssql
-            - demohangfire.server1
+            - demohangfire.server
+            - demohangfire.dashboard
 
-    demohangfire.server1:
-        image: ${DOCKER_REGISTRY-}demohangfireserver1
+    demohangfire.server:
+        image: ${DOCKER_REGISTRY-}demohangfireserver
         build:
             context: .
             dockerfile: DemoHangfire.Server/Dockerfile
             network: 'host'
         environment:
             ConnectionString: "Data Source=demohangfire.mssql;Database=DemoHangfire;User=SA;Password=${SA_PASSWD};MultipleActiveResultSets=True"
+        depends_on:
+            - demohangfire.mssql
+
+    demohangfire.dashboard:
+        image: ${DOCKER_REGISTRY-}demohangfiredashboard
+        build:
+            context: .
+            dockerfile: DemoHangfire.Dashboard/Dockerfile
+            network: 'host'
+        environment:
+        ports:
+            - "5000:5000"
+        environment:
+            ConnectionString: "Data Source=demohangfire.mssql;Database=DemoHangfire;User=SA;Password=${SA_PASSWD};MultipleActiveResultSets=True"
+            ASPNETCORE_URLS: "http://0.0.0.0:5000"
         depends_on:
             - demohangfire.mssql
 
