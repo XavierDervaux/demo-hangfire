@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DemoHangfire.Models
+namespace DemoHangfire.Tasks
 {
     public class Moka : ICoffee
     {

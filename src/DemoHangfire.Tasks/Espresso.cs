@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace DemoHangfire.Models
+namespace DemoHangfire.Tasks
 {
-    public class Turkish : ICoffee
+    public class Espresso : ICoffee
     {
-        public string DisplayName => "Turkish";
-
+        public string DisplayName => "Espresso";
+        
         public void Prepare(string clientName, string preference)
         {
             throw new NotImplementedException();

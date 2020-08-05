@@ -14,6 +14,18 @@ services:
             ConnectionString: "Data Source=demohangfire.mssql;Database=DemoHangfire;User=SA;Password=${SA_PASSWD};MultipleActiveResultSets=True"
         depends_on:
             - demohangfire.mssql
+            - demohangfire.server1
+
+    demohangfire.server1:
+        image: ${DOCKER_REGISTRY-}demohangfireserver1
+        build:
+            context: .
+            dockerfile: DemoHangfire.Server/Dockerfile
+            network: 'host'
+        environment:
+            ConnectionString: "Data Source=demohangfire.mssql;Database=DemoHangfire;User=SA;Password=${SA_PASSWD};MultipleActiveResultSets=True"
+        depends_on:
+            - demohangfire.mssql
 
     demohangfire.mssql:
         image: ${DOCKER_REGISTRY-}demohangfiremssql
