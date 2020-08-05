@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DemoHangfire.Models
+namespace DemoHangfire.Tasks
 {
     public interface ICoffee
     {

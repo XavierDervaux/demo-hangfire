@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.IO;
-using System.Threading;
-using DemoHangfire.Models;
+using DemoHangfire.Helpers;
+using DemoHangfire.Tasks;
 using Hangfire;
-using Hangfire.SqlServer;
 
 namespace DemoHangfire.CLI
 {
@@ -12,12 +10,12 @@ namespace DemoHangfire.CLI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Waiting for SQL Server...");
-            Thread.Sleep(15000); //Wait for SQL Server to be up.
-
             var active = true;
 
             var cs = Environment.GetEnvironmentVariable("ConnectionString"); //Fetch the connection string from the environment variable defined in docker-compose.yml. If you do not want to use docker, edit this to be relevant to you.
+            
+            SqlServerHelper.WaitForSqlServer(cs); //Make sure SQL SErver is started before going further.
+
             GlobalConfiguration.Configuration.UseSqlServerStorage(cs); //Set the configuration for Hangfire so it will use our Instance of SQL Server to store the jobs.
             Directory.CreateDirectory("./output"); //This folder will contain the result of the jobs we'll create.
 

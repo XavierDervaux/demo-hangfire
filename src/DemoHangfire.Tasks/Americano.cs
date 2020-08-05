@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DemoHangfire.Models
+namespace DemoHangfire.Tasks
 {
-    public class Cappuccino : ICoffee
+    public class Americano : ICoffee
     {
-        public string DisplayName => "Cappuccino";
+        public string DisplayName => "Americano";
 
         public void Prepare(string clientName, string preference)
         {
