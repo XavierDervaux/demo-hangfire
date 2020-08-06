@@ -5,18 +5,18 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["DemoHangfire.CLI/DemoHangfire.CLI.csproj", "DemoHangfire.CLI/"]
+COPY ["DemoHangfire.Server/DemoHangfire.Server.csproj", "DemoHangfire.Server/"]
 COPY ["DemoHangfire.Tasks/DemoHangfire.Tasks.csproj", "DemoHangfire.Tasks/"]
 COPY ["DemoHangfire.Helpers/DemoHangfire.Helpers.csproj", "DemoHangfire.Helpers/"]
-RUN dotnet restore "DemoHangfire.CLI/DemoHangfire.CLI.csproj"
+RUN dotnet restore "DemoHangfire.Server/DemoHangfire.Server.csproj"
 COPY . .
-WORKDIR "/src/DemoHangfire.CLI"
-RUN dotnet build "DemoHangfire.CLI.csproj" -c Release -o /app/build
+WORKDIR "/src/DemoHangfire.Server"
+RUN dotnet build "DemoHangfire.Server.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "DemoHangfire.CLI.csproj" -c Release -o /app/publish
+RUN dotnet publish "DemoHangfire.Server.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "DemoHangfire.CLI.dll"]
+ENTRYPOINT ["dotnet", "DemoHangfire.Server.dll"]
