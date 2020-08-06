@@ -3,11 +3,12 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["DemoHangfire.Dashboard/DemoHangfire.Dashboard.csproj", "DemoHangfire.Dashboard/"]
+COPY ["DemoHangfire.Tasks/DemoHangfire.Tasks.csproj", "DemoHangfire.Tasks/"]
+COPY ["DemoHangfire.Helpers/DemoHangfire.Helpers.csproj", "DemoHangfire.Helpers/"]
 RUN dotnet restore "DemoHangfire.Dashboard/DemoHangfire.Dashboard.csproj"
 COPY . .
 WORKDIR "/src/DemoHangfire.Dashboard"

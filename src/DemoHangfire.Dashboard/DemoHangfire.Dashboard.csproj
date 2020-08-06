@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DemoHangfire.Helpers\DemoHangfire.Helpers.csproj" />
+    <ProjectReference Include="..\DemoHangfire.Tasks\DemoHangfire.Tasks.csproj" />
   </ItemGroup>
 
 </Project>
