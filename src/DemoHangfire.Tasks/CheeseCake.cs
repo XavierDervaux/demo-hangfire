@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace DemoHangfire.Tasks
 {
@@ -33,15 +30,16 @@ namespace DemoHangfire.Tasks
         //
         // Nothing too interesting below this point.
         // These methods exist just to create delay so the job doesn't end too quickly.
+        // They stall for a total of 30 seconds (Not including processing time)
         //
 
-        private void SellItTwiceThePrice()
-        {
-            Thread.Sleep(2*1000);
-        }
         private void BuyACheapCakeAtCarrefour()
         {
-            Thread.Sleep(10 * 1000);
+            Thread.Sleep(25 * 1000);
+        }
+        private void SellItTwiceThePrice()
+        {
+            Thread.Sleep(5*1000);
         }
     }
 }

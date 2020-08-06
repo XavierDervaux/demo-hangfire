@@ -12,7 +12,7 @@ namespace DemoHangfire.CLI
             var active = true;
 
             var cs = Environment.GetEnvironmentVariable("ConnectionString"); //Fetch the connection string from the environment variable defined in docker-compose.yml. If you do not want to use docker, edit this to be relevant to you.
-            SqlServerHelper.WaitForSqlServer(cs); //Make sure SQL SErver is started before going further.
+            SqlServerHelper.WaitForSqlServer(cs); //Make sure SQL Server is started before going further.
             GlobalConfiguration.Configuration.UseSqlServerStorage(cs); //Set the configuration for Hangfire so it will use our Instance of SQL Server to store the jobs.
 
             PrintWelcome();
@@ -101,7 +101,7 @@ namespace DemoHangfire.CLI
 
         /// <summary>
         /// This demonstrates Hangfire's Recuring jobs.
-        /// By add a job, it will be executed recuringly as specified by the cron Schedule. In this example, Daily.
+        /// By adding a job, it will be executed recuringly as specified by the cron Schedule. In this example, Daily.
         /// https://docs.hangfire.io/en/latest/background-methods/performing-recurrent-tasks.html
         /// </summary>
         private static void MorningCoffee()
